@@ -16,7 +16,7 @@
  * Users of this class can expect to gain a solid understanding of SOQL in Apex and
  * be prepared to handle data retrieval tasks in Salesforce development.
  *
- * @author Your Name
+ * @author Irene Schild
  */
 
 public with sharing class SOQL {
@@ -27,9 +27,15 @@ public with sharing class SOQL {
 	 * @return List of all leads with Id, LastName, Company, Phone, Email
 	 * Update the corresponding test class and testGetAllLeads method to cover this method
 	 */
-	//[public | private ] [static] data_type method_name (input parameters) {
-	//  The body of the method
-	//}
+	public static Lead getAllLeads() {
+		
+		List<Lead> leads = [
+			SELECT Id, LastName, Company, Phone, Email
+			FROM Lead 
+		];
+
+	return leads;
+	}
 
 	/**
 	 * Question 2
@@ -332,7 +338,12 @@ public with sharing class SOQL {
 	 * @return A list of filtered Opportunity
 	 */
 	public static List<Opportunity> getOpportunityDetailsForClosedWon() {
-		return null; // Replace null with the variable you used to store the result
+		List<Opportunity> opps = [
+			SELECT Name, Account.Name, Owner.Name
+			FROM Opportunity 
+			WHERE StageName = 'Closed Won' 
+		];
+		return opps; // Replace null with the variable you used to store the result
 	}
 
 	/**
