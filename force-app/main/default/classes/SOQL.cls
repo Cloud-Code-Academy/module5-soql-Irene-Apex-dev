@@ -73,7 +73,7 @@ public with sharing class SOQL {
 		];
 
 		for (Contact contact : contacts) {
-			contactIds.add(contact.id);
+			contactIds.add(contact.Id);
 		}
 	
 		return contactIds;
@@ -88,7 +88,7 @@ public with sharing class SOQL {
 	 * @return A list of Opportunities with important opportunities fields
 	 * Update the corresponding test class and testGetClosedWonOpportunityCountByAccount method to cover this method
 	 */
-	public static List<Opportunity> getClosedWonOpportunityCountByAccount (Id accountId) {
+	public static List<Opportunity> getClosedWonOpportunityCountByAccount(Id accountId) {
 
 		List<Opportunity> opportunities = new List<Opportunity>();
 
@@ -122,7 +122,7 @@ public with sharing class SOQL {
 		];
 
 		String valueOf = String.valueOf(countAccounts.get(0).get('totalAccounts'));
-		Integer accountCount = Integer.valueOf(valueof);
+		Integer accountCount = Integer.valueOf(valueOf);
 
 		return accountCount;
 	}
@@ -243,7 +243,7 @@ public with sharing class SOQL {
 
 		leads = [
 			SELECT Id, LastName, Phone, Email, Company, LeadSource, Title
-			FROM LEAD
+			FROM Lead
 			WHERE (LeadSource = :source OR Title LIKE :function)
 		];
 
@@ -560,13 +560,14 @@ public with sharing class SOQL {
 
 		// Query the Accounts
 		List<String> listDomains = new List<String>(domains);
+
 		accounts = [
 			SELECT Id, Name, Website
 			FROM Account
 			WHERE website IN :listDomains
 		];
 
-		return accounts; // Replace null with the variable you used to store the result
+		return accounts;
 	}
 
 	/**
